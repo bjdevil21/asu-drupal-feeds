@@ -42,6 +42,13 @@ class ASUeAdvisorTransferFeedParser extends FeedsParser {
         }
       }
 
+/*      if (count($data['DegreeNew'])) {
+        $degreeIsNew = array();
+        foreach ($data['DegreeNew'] as $dn) {
+          $parsed_data[$key]['degreeIsNew'] = 1;
+        }
+      }*/
+
       if (count($data['DescrlongExtn5'])) {
         $additionalAdmissions = array();
         $parsed_data[$key]['additionalAdmissions'] = 1;
@@ -168,10 +175,12 @@ class ASUeAdvisorTransferFeedParser extends FeedsParser {
         }
       }
 
+
+
     } // End of foreach
 
     //error_log(print_r($parsed_data, true));
-    //watchdog('keith debug', '<pre>'. print_r($parsed_data, true) .'</pre>');
+    //watchdog('ASU Degrees Debug', '<pre>'. print_r($parsed_data, true) .'</pre>');
     //watchdog('keith $v', '<pre>' . print_r($v, true) . '</pre>');
     return new FeedsParserResult($parsed_data);
   }
@@ -222,6 +231,8 @@ class ASUeAdvisorTransferFeedParser extends FeedsParser {
       'subPlnMajorMaps.SubplnMajorMapSubplanName' => array('name' => t('Subplan name for URL')),
       'wueCampusConfirmed' => array('name' => t('WUE Confirmed')),
       'ad' => array('name' => t('Accelerated Degree')),
+      //not quite working yet
+      //'degreeIsNew' => array('name' => t('Degree New')),
     );
   }
 }
